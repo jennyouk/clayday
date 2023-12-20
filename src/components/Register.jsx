@@ -7,7 +7,26 @@ export const Register = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
+    const body = { name, email, pass };
+    console.log(name, email, pass);
+    fetch('http://localhost:3000/register', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'Application/JSON',
+        // Accept: 'application/json',
+        // 'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log('logging in with', data);
+      })
+      .then(() => {
+        props.history.push('/');
+      })
+      .catch((err) => console.log('Login error: ', err));
   };
 
   return (

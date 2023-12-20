@@ -11,8 +11,9 @@
 // }
 
 import React, { useState } from 'react';
-import { Login } from './Login.jsx';
-import { Register } from './Register.jsx';
+// import { Login } from './Login.jsx';
+// import { Register } from './Register.jsx';
+import { Entry } from './Entry.jsx';
 import '../scss/application.scss';
 
 const App = () => {
@@ -24,12 +25,14 @@ const App = () => {
 
   return (
     <div className='App'>
+      <Entry />
       {/* <h1>clay day</h1> */}
-      {currentForm === 'login' ? (
+      {/* {currentForm === 'login' ? (
         <Login onFormSwitch={toggleForm} />
       ) : (
         <Register onFormSwitch={toggleForm} />
-      )}
+      )} */}
+
     </div>
   );
 };

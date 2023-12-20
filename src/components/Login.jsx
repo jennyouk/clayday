@@ -6,12 +6,30 @@ export const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
+    // const { email, pass } = body;
+    console.log(email, pass);
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({ email, pass }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log('logging in with', data);
+      })
+      .then(() => {
+        props.history.push('/');
+      })
+      .catch((err) => console.log('Login error: ', err));
   };
 
   return (
     <div className='auth-form-container'>
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className='login-form' onSubmit={handleSubmit}>
         <label htmlFor='email'>email </label>
         <input
           value={email}
