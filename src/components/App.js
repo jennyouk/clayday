@@ -10,13 +10,28 @@
 //   }
 // }
 
-import React from 'react';
-// import Login from './src/components/Login.jsx';
+import React, { useState } from 'react';
+import { Login } from './Login.jsx';
+import { Register } from './Register.jsx';
+import '../scss/application.scss';
 
-const App = () => (
-  <div id='app'>
-    <h1>clay day</h1>
-  </div>
-);
+const App = () => {
+  const [currentForm, setCurrentForm] = useState('login');
+
+  const toggleForm = (formName) => {
+    setCurrentForm(formName);
+  };
+
+  return (
+    <div className='App'>
+      {/* <h1>clay day</h1> */}
+      {currentForm === 'login' ? (
+        <Login onFormSwitch={toggleForm} />
+      ) : (
+        <Register onFormSwitch={toggleForm} />
+      )}
+    </div>
+  );
+};
 
 export default App;
