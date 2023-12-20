@@ -9,7 +9,7 @@ export const Register = (props) => {
     e.preventDefault();
     const body = { name, email, pass };
     console.log(name, email, pass);
-    fetch('http://localhost:3000/register', {
+    fetch('/entry/register', {
       method: 'POST',
       mode: 'no-cors',
       headers: {
@@ -23,9 +23,9 @@ export const Register = (props) => {
       .then((data) => {
         console.log('logging in with', data);
       })
-      .then(() => {
-        props.history.push('/');
-      })
+      // .then(() => {
+      //   props.history.push('/');
+      // })
       .catch((err) => console.log('Login error: ', err));
   };
 

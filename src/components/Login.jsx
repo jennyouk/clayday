@@ -6,7 +6,7 @@ export const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const { email, pass } = body;
+    const body = { email, pass }
     console.log(email, pass);
     fetch('/login', {
       method: 'POST',
@@ -15,7 +15,7 @@ export const Login = (props) => {
         Accept: 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
-      body: JSON.stringify({ email, pass }),
+      body: JSON.stringify(body),
     })
       .then((resp) => resp.json())
       .then((data) => {
