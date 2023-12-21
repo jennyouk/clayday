@@ -14,25 +14,25 @@ import React, { useState } from 'react';
 // import { Login } from './Login.jsx';
 // import { Register } from './Register.jsx';
 import { Entry } from './Entry.jsx';
+import { HomeContainer } from './HomeContainer.jsx';
 import '../scss/application.scss';
 
 const App = () => {
-  const [currentForm, setCurrentForm] = useState('login');
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
+  const login = (bool) => {
+    setLoggedIn(bool);
   };
 
   return (
     <div className='App'>
-      <Entry />
+      {loggedIn ? <HomeContainer /> : <Entry login={login} />}
       {/* <h1>clay day</h1> */}
       {/* {currentForm === 'login' ? (
         <Login onFormSwitch={toggleForm} />
       ) : (
         <Register onFormSwitch={toggleForm} />
       )} */}
-
     </div>
   );
 };

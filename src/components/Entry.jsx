@@ -13,9 +13,9 @@ export const Entry = (props) => {
     <div className='Entry'>
       <h1>c l a y d a y</h1>
       {currentForm === 'login' ? (
-        <Login onFormSwitch={toggleForm} />
+        <Login onFormSwitch={toggleForm} login={props.login}/>
       ) : (
-        <Register onFormSwitch={toggleForm} />
+        <Register onFormSwitch={toggleForm} login={props.login} />
       )}
     </div>
   );

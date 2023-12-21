@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 export const Login = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [buttonText, setButtonText] = useState('Log in');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,10 +17,17 @@ export const Login = (props) => {
       },
       body: JSON.stringify(body),
     })
-      .then((resp) => resp.json())
-      // .then((data) => {
-      //   console.log('logging in with', body);
-      // })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.login === true) {
+          console.log('you are logged in');
+          props.login(true);
+        } else {
+          console.log('unsuccessful');
+          setButtonText('Log in unsuccessful')
+          // props.onFormSwitch('register')
+        }
+      })
       // .then(() => {
       //   props.history.push('/');
       // })
@@ -47,7 +55,7 @@ export const Login = (props) => {
           id='password'
           name='password'
         />
-        <button>Log In</button>
+        <button>{buttonText}</button>
       </form>
       <button
         className='link-btn'

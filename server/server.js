@@ -27,7 +27,7 @@ app.use('/login', userController.verifyUser, (req, res) => {
   // console.log('request body: ', req.body);
   if (res.locals.loginSuccess) {
     console.log('logged in');
-    res.status(200).json({});
+    res.status(200).json({ login: true });
   } else {
     console.log('not logged in');
     res.status(400).json({});
@@ -36,7 +36,7 @@ app.use('/login', userController.verifyUser, (req, res) => {
 
 app.use('/register', userController.createUser, (req, res) => {
   console.log('register new user');
-  res.status(200).json({});
+  res.status(200).json({ login: true });
 });
 
 // app.post(

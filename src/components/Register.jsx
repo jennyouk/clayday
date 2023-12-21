@@ -4,6 +4,7 @@ export const Register = (props) => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
+  const [buttonText, setButtonText] = useState('Register');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,14 +18,18 @@ export const Register = (props) => {
       },
       body: JSON.stringify(body),
     })
-      .then((resp) => resp.json())
-      // .then((data) => {
-      //   console.log('logging in with', body);
-      // })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('logging in with', body);
+        props.login(true);
+      })
       // .then(() => {
       //   props.history.push('/');
       // })
-      .catch((err) => console.log('Registration error: ', err));
+      .catch((err) => {
+        setButtonText('Please fill all fields')
+        console.log('Registration error: ', err)
+      });
   };
 
   return (
@@ -57,7 +62,7 @@ export const Register = (props) => {
           id='password'
           name='password'
         />
-        <button>Register</button>
+        <button>{buttonText}</button>
       </form>
       <button className='link-btn' onClick={() => props.onFormSwitch('login')}>
         Already have an account? Login here.
