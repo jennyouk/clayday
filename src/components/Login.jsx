@@ -12,13 +12,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const defaultTheme = createTheme();
+import { useTheme } from '@mui/material/styles';
 
 export const Login = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [buttonText, setButtonText] = useState('Log in');
+
+  const defaultTheme = useTheme();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,10 +57,41 @@ export const Login = (props) => {
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <Typography component='h1' variant='h5'>
-          Sign in
+          welcome!
         </Typography>
-        <form className='login-form' onSubmit={handleSubmit}>
-          <label htmlFor='username'>username </label>
+        <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+
+          {/* <label htmlFor='username'>username </label>
           <input
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -76,14 +109,15 @@ export const Login = (props) => {
             id='password'
             name='password'
           />
-          <Button variant='outlined'>{buttonText}</Button>
-        </form>
-        <button
-          className='link-btn'
+          <Button variant='outlined'>{buttonText}</Button> */}
+        </Box>
+        <Button
+          variant="text"
+          sx={{ mt: 3, mb: 2 }}
           onClick={() => props.onFormSwitch('register')}
         >
           Don't have an account? Register here.
-        </button>
+        </Button>
       </Container>
     </ThemeProvider>
   );

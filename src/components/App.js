@@ -1,29 +1,38 @@
-// import React, { Component } from 'react';
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <h1>c l a y d a y</h1>
-//       </div>
-//     );
-//   }
-// }
-
 import React, { useState } from 'react';
-// import { Login } from './Login.jsx';
-// import { Register } from './Register.jsx';
 import { Entry } from './Entry.jsx';
 import { HomeContainer } from './HomeContainer.jsx';
-import { red } from '@mui/material/colors';
+import { purple } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import CssBaseline from "@mui/material/CssBaseline";
 import '../scss/app-home.scss';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: red[500],
+      main: purple[500],
+    },
+    secondary: {
+      main: '#f44336',
+    },
+  },
+  components: {
+
+    MuiCssBaseline: {
+      styleOverrides: {
+
+        html: {
+          // fontSize: '62.5%' /* 62.5% of 16px = 10px */,
+          fontFamily: 'Poppins, sans-serif',
+        },
+        body: {
+          margin: '0',
+          // color: 'darkGrey',
+          boxSizing: 'border-box',
+          fontFamily: 'Poppins, sans-serif',
+          // backgroundColor: '#E3E3E3',
+          // backgroundImage: 'linear-gradient(49deg, #7439db, #c66fbc 48%, #f7944d)',
+        },
+      },
     },
   },
 });
@@ -36,7 +45,9 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={theme} className='App'>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* <div className='App'> */}
       {loggedIn ? <HomeContainer /> : <Entry login={login} />}
       {/* <h1>clay day</h1> */}
       {/* {currentForm === 'login' ? (
