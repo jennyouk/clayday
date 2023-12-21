@@ -4,15 +4,13 @@ const mongoose = require('mongoose');
 
 // const apiRouter = require('./routes/api');
 // const cookieParser = require('cookie-parser');
-// const userController = require('./controllers/userController');
+const userController = require('./controllers/userController');
 // const cookieController = require('./controllers/cookieController');
 // const sessionController = require('./controllers/sessionController');
 
 const PORT = 3000;
 app.use(express.json());
 // app.use('/api', apiRouter, (req, res) => console.log(req.body));
-
-
 
 mongoose.connect(
   'mongodb+srv://jennyouk:ASkaXIUEegnpY9vX@clayday.i5vuqzh.mongodb.net/?retryWrites=true&w=majority'
@@ -23,20 +21,23 @@ mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
 
-
-
 //LOGIN//
 
-app.use('/login', (req, res) => {
-  console.log('request body: ', req.body);
-  res.status(200).json({ message: 'logged in' });
+app.use('/login', userController.verifyUser, (req, res) => {
+  // console.log('request body: ', req.body);
+  if (res.locals.loginSuccess) {
+    console.log('logged in');
+    res.status(200).json({});
+  } else {
+    console.log('not logged in');
+    res.status(400).json({});
+  }
 });
 
-app.use('/register', (req, res) => {
-  console.log('request body: ', req.body);
-  res.status(200).json({ message: 'registered' });
+app.use('/register', userController.createUser, (req, res) => {
+  console.log('register new user');
+  res.status(200).json({});
 });
-
 
 // app.post(
 //   '/login',
