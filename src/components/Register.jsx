@@ -51,7 +51,7 @@ export const Register = (props) => {
     <ThemeProvider theme={theme}>
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
-        <Typography component='h1' variant='h5'>
+        <Typography component='h1' variant='h5' color='grey.700'>
           get messy with us
         </Typography>
         <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>

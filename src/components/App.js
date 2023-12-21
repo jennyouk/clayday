@@ -15,6 +15,9 @@ const theme = createTheme({
       main: '#f44336',
     },
   },
+  typography: {
+    fontFamily: "Poppins"
+  },
   components: {
     MuiButton: {
       styleOverrides: {
@@ -26,18 +29,22 @@ const theme = createTheme({
     },
     MuiCssBaseline: {
       styleOverrides: {
-        html: {
-          // fontSize: '62.5%' /* 62.5% of 16px = 10px */,
-          fontFamily: 'Poppins, sans-serif',
+        "@font-face": {
+          fontFamily: "Poppins",
+          // src: `url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') format("truetype")`
         },
-        body: {
-          margin: '0',
+        // html: {
+          // fontSize: '62.5%' /* 62.5% of 16px = 10px */,
+          // fontFamily: 'Poppins, sans-serif',
+        // },
+        // body: {
+          // margin: '0',
           // color: 'darkGrey',
-          boxSizing: 'border-box',
-          fontFamily: 'Poppins, sans-serif',
+          // boxSizing: 'border-box',
+          // fontFamily: 'Poppins, sans-serif',
           // backgroundColor: '#E3E3E3',
           // backgroundImage: 'linear-gradient(49deg, #7439db, #c66fbc 48%, #f7944d)',
-        },
+        // },
 
       },
     },

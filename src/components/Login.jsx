@@ -54,7 +54,7 @@ export const Login = (props) => {
       {/* <div className='auth-form-container'> */}
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
-        <Typography component='h1' variant='h5'>
+        <Typography component='h1' variant='h5' color='grey.700'>
           welcome!
         </Typography>
         <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>

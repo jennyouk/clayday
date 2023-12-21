@@ -25,14 +25,14 @@ export const Entry = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component='main' maxWidth='xs'>
+      <Container component='main'>
         <CssBaseline />
         <Typography
           variant='h1'
           align='center'
-          color='grey.700'
+          // color='grey.700'
           sx={{
-            backgroundcolor: 'primary',
+            // backgroundcolor: 'primary',
             backgroundImage: `linear-gradient(45deg, #5514B4, #FF80FF)`,
             backgroundSize: '100%',
             // backgroundRepeat: 'repeat',
@@ -40,10 +40,10 @@ export const Entry = (props) => {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             mt: 3,
-            mb: 5,
+            mb: 10,
           }}
         >
-          clayday
+          c l a y d a y
         </Typography>
         {currentForm === 'login' ? (
           <Login onFormSwitch={toggleForm} login={props.login} />
