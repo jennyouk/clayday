@@ -5,8 +5,17 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/dist'),
+    publicPath: '/',
     filename: 'bundle.js',
   },
+  devServer: {
+    static: {
+      publicPath: '/dist',
+      directory: path.resolve(__dirname, '/dist'),
+    },
+    proxy: { '/': 'http://localhost:3000' },
+  },
+
   plugins: [
     new HTMLWebpackPlugin({
       template: './src/index.html',
@@ -30,25 +39,5 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
-  },
-  devServer: {
-    host: 'localhost',
-    port: 8080,
-    // enable HMR on the devServer
-    hot: true,
-    // fallback to root for other urls
-    historyApiFallback: true,
-
-    static: {
-      publicPath: '/',
-      directory: path.resolve(__dirname, '/dist'),
-    },
-    headers: { 'Access-Control-Allow-Origin': '*' },
-    proxy: {
-      '/': {
-        target: 'http://localhost:3000/',
-        secure: false,
-      },
-    },
   },
 };

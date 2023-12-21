@@ -11,6 +11,7 @@ export const Entry = (props) => {
 
   return (
     <div className='Entry'>
+      <h1>c l a y d a y</h1>
       {currentForm === 'login' ? (
         <Login onFormSwitch={toggleForm} />
       ) : (

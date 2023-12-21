@@ -1,38 +1,36 @@
 import React, { useState } from 'react';
 
 export const Register = (props) => {
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [name, setName] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = { name, email, pass };
-    console.log(name, email, pass);
-    fetch('/entry/register', {
+    const body = { name, username, password };
+    // console.log(name, username, password);
+    // console.log(body);
+    fetch('/register', {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'Application/JSON',
-        // Accept: 'application/json',
-        // 'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(body),
     })
       .then((resp) => resp.json())
-      .then((data) => {
-        console.log('logging in with', data);
-      })
+      // .then((data) => {
+      //   console.log('logging in with', body);
+      // })
       // .then(() => {
       //   props.history.push('/');
       // })
-      .catch((err) => console.log('Login error: ', err));
+      .catch((err) => console.log('Registration error: ', err));
   };
 
   return (
     <div className='auth-form-container'>
       <form className='register-form' onSubmit={handleSubmit}>
-        <label htmlFor='name'>Name </label>
+        <label htmlFor='name'>name </label>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -41,19 +39,19 @@ export const Register = (props) => {
           id='name'
           name='name'
         />
-        <label htmlFor='email'>email </label>
+        <label htmlFor='username'>username </label>
         <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type='email'
-          placeholder='youremail@email.com'
-          id='email'
-          name='email'
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          type='username'
+          placeholder='username'
+          id='username'
+          name='username'
         />
         <label htmlFor='password'>password </label>
         <input
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           type='password'
           placeholder='***********'
           id='password'
