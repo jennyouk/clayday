@@ -52,7 +52,11 @@ export const NewProj = (props) => {
         />
 
         <label htmlFor='phase'>phase </label>
-        <select id='phase' name='phase'>
+        <select
+          id='phase'
+          name='phase'
+          onChange={(e) => setPhase(e.target.value)}
+        >
           <option value='thrown'>thrown</option>
           <option value='trimmed'>trimmed</option>
           <option value='bisqued'>bisqued</option>
@@ -61,17 +65,23 @@ export const NewProj = (props) => {
         </select>
 
         <div>
-          <input type='checkbox' id='remind' name='remind' value={remind} /> {' '}
-          <label for='remind'>set reminder in </label>
+          <input
+            type='checkbox'
+            id='remind'
+            name='remind'
+            value={remind}
+            onChange={(e) => setRemind(!remind)}
+          />
+            <label htmlFor='remind'>set reminder in </label>
           <input
             value={days}
-            //   onChange={(e) => setNickname(e.target.value)}
+            onChange={(e) => setDays(e.target.value)}
             type='days'
             placeholder='3'
             id='days'
             name='days'
           />
-          <label for='days'> days </label>
+          <label htmlFor='days'> days </label>
         </div>
 
         <label htmlFor='notes'>project notes </label>
@@ -79,9 +89,11 @@ export const NewProj = (props) => {
           name='notes'
           rows='10'
           cols='30'
+          value={notes}
           placeholder='(clay body, start weight, glaze)'
+          onChange={(e) => setNotes(e.target.value)}
         >
-          {notes}
+          '(clay body, start weight, glaze)'
         </textarea>
 
         <button>submit</button>
