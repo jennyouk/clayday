@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 
 export const Register = (props) => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [buttonText, setButtonText] = useState('Register');
+
+  const theme = useTheme();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,46 +42,70 @@ export const Register = (props) => {
       //   props.history.push('/');
       // })
       .catch((err) => {
-        setButtonText('Please fill all fields')
-        console.log('Registration error: ', err)
+        setButtonText('Please fill all fields');
+        console.log('Registration error: ', err);
       });
   };
 
   return (
-    <div className='auth-form-container'>
-      <form className='register-form' onSubmit={handleSubmit}>
-        <label htmlFor='name'>name </label>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          type='name'
-          placeholder='Your Name'
-          id='name'
-          name='name'
-        />
-        <label htmlFor='username'>username </label>
-        <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          type='username'
-          placeholder='username'
-          id='username'
-          name='username'
-        />
-        <label htmlFor='password'>password </label>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type='password'
-          placeholder='***********'
-          id='password'
-          name='password'
-        />
-        <button>{buttonText}</button>
-      </form>
-      <button className='link-btn' onClick={() => props.onFormSwitch('login')}>
-        Already have an account? Login here.
-      </button>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container component='main' maxWidth='xs'>
+        <CssBaseline />
+        <Typography component='h1' variant='h5'>
+          get messy with us
+        </Typography>
+        <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <label htmlFor='name'>name </label>
+          <TextField
+            margin='normal'
+            required
+            fullWidth
+            id='name'
+            label='name'
+            name='name'
+            autoComplete='name'
+            autoFocus
+            onChange={(e) => setName(e.target.value)}
+          />
+          <TextField
+            margin='normal'
+            required
+            fullWidth
+            id='username'
+            label='username'
+            name='username'
+            autoComplete='username'
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            margin='normal'
+            required
+            fullWidth
+            name='password'
+            label='password'
+            type='password'
+            id='password'
+            autoComplete='current-password'
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            sx={{ mt: 3, mb: 2 }}
+          >
+            {buttonText}
+          </Button>
+        </Box>
+        <Button
+          variant='text'
+          fullWidth
+          sx={{ mt: 3, mb: 2 }}
+          onClick={() => props.onFormSwitch('login')}
+        >
+          Already have an account? Login here.
+        </Button>
+      </Container>
+    </ThemeProvider>
   );
 };

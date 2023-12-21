@@ -3,7 +3,7 @@ import { Entry } from './Entry.jsx';
 import { HomeContainer } from './HomeContainer.jsx';
 import { purple } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from "@mui/material/CssBaseline";
+import CssBaseline from '@mui/material/CssBaseline';
 import '../scss/app-home.scss';
 
 const theme = createTheme({
@@ -16,10 +16,8 @@ const theme = createTheme({
     },
   },
   components: {
-
     MuiCssBaseline: {
       styleOverrides: {
-
         html: {
           // fontSize: '62.5%' /* 62.5% of 16px = 10px */,
           fontFamily: 'Poppins, sans-serif',
