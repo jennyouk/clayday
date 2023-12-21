@@ -37,6 +37,7 @@ export const Login = (props) => {
         if (res.login === true) {
           console.log('you are logged in');
           props.login(true);
+          props.userId(res.userId);
         } else {
           console.log('unsuccessful');
           setButtonText('Log in unsuccessful');

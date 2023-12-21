@@ -46,9 +46,9 @@ export const Entry = (props) => {
           c l a y d a y
         </Typography>
         {currentForm === 'login' ? (
-          <Login onFormSwitch={toggleForm} login={props.login} />
+          <Login onFormSwitch={toggleForm} login={props.login} userId={props.userId} />
         ) : (
-          <Register onFormSwitch={toggleForm} login={props.login} />
+          <Register onFormSwitch={toggleForm} login={props.login} userId={props.userId}/>
         )}
       </Container>
     </ThemeProvider>

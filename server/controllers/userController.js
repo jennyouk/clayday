@@ -8,14 +8,17 @@ userController.createUser = async (req, res, next) => {
   // console.log('request body: ', req.body);
   const { name, username, password } = req.body;
   const newUser = await User.create({ name, username, password });
-  console.log('newly created user:', newUser);
   if (newUser.length === 0) {
     return next({
       log: 'Error occurred in createUser middleware',
       message: 'An error has occurred in createUser',
     });
+  } else {
+    console.log('newly created user:', newUser);
+    // console.log(newUser.id);
+    res.userId = newUser.id;
+    next();
   }
-  next();
 };
 
 /**
@@ -37,6 +40,7 @@ userController.verifyUser = async (req, res, next) => {
     });
   } else {
     res.locals.loginSuccess = true;
+    res.userId = verifyUser.id;
     return next();
   }
 };

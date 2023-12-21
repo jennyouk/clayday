@@ -37,6 +37,7 @@ export const Register = (props) => {
       .then((res) => {
         console.log('logging in with', body);
         props.login(true);
+        props.userId(res.userId);
       })
       // .then(() => {
       //   props.history.push('/');
