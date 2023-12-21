@@ -28,7 +28,7 @@ export const Entry = (props) => {
       <Container component='main'>
         <CssBaseline />
         <Typography
-          variant='h1'
+          variant='h2'
           align='center'
           // color='grey.700'
           sx={{

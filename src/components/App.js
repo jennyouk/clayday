@@ -52,7 +52,7 @@ const theme = createTheme({
 });
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false); //switch to false after debug
+  const [loggedIn, setLoggedIn] = useState(true); //switch to false after debug
 
   const login = (bool) => {
     setLoggedIn(bool);
@@ -61,14 +61,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {/* <div className='App'> */}
       {loggedIn ? <HomeContainer /> : <Entry login={login} />}
-      {/* <h1>clay day</h1> */}
-      {/* {currentForm === 'login' ? (
-        <Login onFormSwitch={toggleForm} />
-      ) : (
-        <Register onFormSwitch={toggleForm} />
-      )} */}
     </ThemeProvider>
   );
 };

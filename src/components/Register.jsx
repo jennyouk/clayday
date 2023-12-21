@@ -51,7 +51,7 @@ export const Register = (props) => {
     <ThemeProvider theme={theme}>
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
-        <Typography component='h1' variant='h5' color='grey.700'>
+        <Typography component='h1' variant='h6' color='grey.700' align='right'>
           get messy with us
         </Typography>
         <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -91,7 +91,7 @@ export const Register = (props) => {
             type='submit'
             fullWidth
             variant='contained'
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 1 }}
           >
             {buttonText}
           </Button>
@@ -99,7 +99,7 @@ export const Register = (props) => {
         <Button
           variant='text'
           fullWidth
-          sx={{ mt: 3, mb: 2 }}
+          sx={{ mt: 0, mb: 2 }}
           onClick={() => props.onFormSwitch('login')}
         >
           Already have an account? Login here.
