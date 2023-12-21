@@ -43,16 +43,16 @@ export const NewProj = (props) => {
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
-      .then((res) => {
-        if (res.added === true) {
-          console.log('project added');
-          // props.login(true);
-        } else {
-          console.log('unsuccessful');
-          // setButtonText('Log in unsuccessful')
-          // props.onFormSwitch('register')
-        }
-      })
+    //   .then((res) => {
+    //     if (res.added === true) {
+    //       console.log('project added');
+    //       // props.login(true);
+    //     } else {
+    //       console.log('unsuccessful');
+    //       // setButtonText('Log in unsuccessful')
+    //       // props.onFormSwitch('register')
+    //     }
+    //   })
       // .then(() => {
       //   props.history.push('/');
       // })
@@ -172,7 +172,7 @@ export const NewProj = (props) => {
               onChange={(e) => setNotes(e.target.value)}
             />
           </Grid>
-          <Button type='submit' variant='contained' sx={{ mt: 3, marginLeft: "auto" }}>
+          <Button type='submit' variant='outlined' sx={{ mt: 3, marginLeft: "auto", paddingLeft:5, paddingRight:5 }}>
             submit
           </Button>
 

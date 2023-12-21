@@ -12,6 +12,7 @@ const projectSchema = new Schema({
   days: { type: Number, required: false },
   notes: { type: String, required: false },
   user: { type: String, required: true },
+  createDate: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('project', projectSchema);

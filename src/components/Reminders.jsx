@@ -18,21 +18,12 @@ import Stack from '@mui/material/Stack';
 
 export const Reminders = (props) => {
   const theme = useTheme();
-  //   const [currentForm, setCurrentForm] = useState('login');
-
-  //   const toggleForm = (formName) => {
-  //     setCurrentForm(formName);
-  //   };
 
   return (
-    // <div className='reminders'>
-    //   <h3>reminders: </h3>
-    //   {}
-    // </div>
     <ThemeProvider theme={theme}>
       <Container component='main'>
         <CssBaseline />
-        <Alert severity='error'>
+        <Alert severity='error' onClose={() => {}}>
           <AlertTitle>Reminders:</AlertTitle>
           The following projects need attention: <strong>check it out</strong>
         </Alert>

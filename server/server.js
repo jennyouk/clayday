@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 // const apiRouter = require('./routes/api');
 // const cookieParser = require('cookie-parser');
 const userController = require('./controllers/userController');
+const projectController = require('./controllers/projectController');
 // const cookieController = require('./controllers/cookieController');
 // const sessionController = require('./controllers/sessionController');
 
@@ -39,7 +40,7 @@ app.use('/register', userController.createUser, (req, res) => {
   res.status(200).json({ login: true });
 });
 
-app.use('/register', projectController.createProject, (req, res) => {
+app.use('/addProject', projectController.createProject, (req, res) => {
   console.log('added new project');
   res.status(200).json({ showAdd: false });
 });
