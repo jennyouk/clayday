@@ -17,8 +17,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
 
 export const HomeContainer = (props) => {
-
-    const theme = useTheme();
+  const theme = useTheme();
 
   return (
     <ThemeProvider theme={theme}>
@@ -42,9 +41,9 @@ export const HomeContainer = (props) => {
         >
           c l a y d a y
         </Typography>
-      <Reminders />
-      <NewProj />
-      <Ongoing />
+        <Reminders />
+        <NewProj />
+        <Ongoing />
       </Container>
     </ThemeProvider>
   );

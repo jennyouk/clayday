@@ -39,6 +39,11 @@ app.use('/register', userController.createUser, (req, res) => {
   res.status(200).json({ login: true });
 });
 
+app.use('/register', projectController.createProject, (req, res) => {
+  console.log('added new project');
+  res.status(200).json({ showAdd: false });
+});
+
 // app.post(
 //   '/login',
 //   userController.verifyUser,
