@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
 
-body {
-  margin: 0;
-  font-family: 'Cabin', sans-serif;
-}
+// body {
+//   margin: 0;
+//   font-family: 'Cabin', sans-serif;
+// }
 // .App {
 //   text-align: center;
 //   display: flex;
@@ -21,15 +21,30 @@ body {
 //   flex-direction: column;
 // }
 
-@media screen and (min-width: 600px) {
-  .Reminders {
-    padding: 5rem;
-    border: 1px solid white;
-    border-radius: 10px;
-    margin: 0.5rem;
-    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.13);
-  }
+.HomeContainer {
+  width: 80%;
+  // text-align: center;
+  display: flex;
+  min-height: 100vh;
+  align-items: start;
+  justify-content: flex-start;
+  flex-direction: column;
 }
+
+.new-project-form {
+  display: flex;
+  flex-direction: column;
+}
+
+// @media screen and (min-width: 600px) {
+//   .reminders {
+//     padding: 5rem;
+//     border: 1px solid white;
+//     border-radius: 10px;
+//     margin: 0.5rem;
+//     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.13);
+//   }
+// }
 
 // label {
 //   text-align: left;

@@ -18,7 +18,7 @@ import { HomeContainer } from './HomeContainer.jsx';
 import '../scss/application.scss';
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true); //switch to false after debug
 
   const login = (bool) => {
     setLoggedIn(bool);
