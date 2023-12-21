@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-const apiRouter = require('./routes/api');
+// const apiRouter = require('./routes/api');
 // const cookieParser = require('cookie-parser');
 // const userController = require('./controllers/userController');
 // const cookieController = require('./controllers/cookieController');
@@ -10,7 +10,7 @@ const apiRouter = require('./routes/api');
 
 const PORT = 3000;
 app.use(express.json());
-app.use('/api', apiRouter, (req, res) => console.log(req.body));
+// app.use('/api', apiRouter, (req, res) => console.log(req.body));
 
 
 
