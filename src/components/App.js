@@ -16,6 +16,14 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 30,
+          padding: 15,
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: {
         html: {
@@ -30,6 +38,7 @@ const theme = createTheme({
           // backgroundColor: '#E3E3E3',
           // backgroundImage: 'linear-gradient(49deg, #7439db, #c66fbc 48%, #f7944d)',
         },
+
       },
     },
   },

@@ -55,7 +55,6 @@ export const Register = (props) => {
           get messy with us
         </Typography>
         <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <label htmlFor='name'>name </label>
           <TextField
             margin='normal'
             required
