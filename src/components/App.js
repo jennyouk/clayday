@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Entry } from './Entry.jsx';
 import { HomeContainer } from './HomeContainer.jsx';
-import { purple } from '@mui/material/colors';
+import { purple, pink } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import '../scss/app-home.scss';
@@ -65,7 +65,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       {loggedIn ? (
-        <HomeContainer userId={user}/>
+        <HomeContainer userId={user} />
       ) : (
         <Entry login={login} userId={addUserVal} />
       )}

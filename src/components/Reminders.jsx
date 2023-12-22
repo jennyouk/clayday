@@ -19,6 +19,27 @@ import Stack from '@mui/material/Stack';
 export const Reminders = (props) => {
   const theme = useTheme();
 
+  const alert = [];
+  fetch('/getProjects', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'Application/JSON',
+    },
+    body: JSON.stringify({ userId: props.userId }),
+  })
+    .then((res) => res.json())
+    .then((allProjects) => {
+      console.log(allProjects);
+      allProjects.forEach((proj) => {
+        alert.push(
+          proj.nickname
+        );
+      });
+      console.log('ongoing', ongoing);
+      // console.log('ongoing 0 nickname', ongoing[0].nickname)
+    })
+    .catch((err) => console.log('Project submission error: ', err));
+
   return (
     <ThemeProvider theme={theme}>
       <Container component='main'>

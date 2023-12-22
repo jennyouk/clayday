@@ -42,7 +42,12 @@ app.use('/register', userController.createUser, (req, res) => {
 
 app.use('/addProject', projectController.createProject, (req, res) => {
   console.log('added new project');
-  res.status(200).json({ showAdd: false });
+  res.status(200).json({});
+});
+
+app.use('/getProjects', projectController.getProjects, (req, res) => {
+  console.log('retrieved projects');
+  res.status(200).json(res.projects);
 });
 
 // app.post(

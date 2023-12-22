@@ -22,7 +22,7 @@ export const HomeContainer = (props) => {
     setShowReminders(bool);
   };
 
-  const [showAdd, setShowAdd] = useState(false);
+  const [showAdd, setShowAdd] = useState(true);
   const toggleAddProj = (bool) => {
     setShowAdd(bool);
   };

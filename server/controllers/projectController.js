@@ -8,7 +8,7 @@ projectController.createProject = async (req, res, next) => {
   //   console.log('request body: ', req.body);
   const { nickname, phase, remind, days, notes, user } = req.body;
   //   if (!remind) days = 0;
-//   if (user === undefined) user = 1;
+  //   if (user === undefined) user = 1;
   const newProject = await Project.create({
     nickname,
     phase,
@@ -25,6 +25,26 @@ projectController.createProject = async (req, res, next) => {
   } else {
     res.added = true;
     console.log('newly created project:', newProject);
+    next();
+  }
+};
+
+// getProjects - get and save a new Project into the database.
+projectController.getProjects = async (req, res, next) => {
+  console.log('entering getProjects middleware');
+  //   console.log('request body: ', req.body);
+  const { userId } = req.body;
+  //   if (!remind) days = 0;
+  //   if (user === undefined) user = 1;
+  const allProjects = await Project.find({ user: userId });
+  if (allProjects === undefined) {
+    return next({
+      log: 'Error occurred in getProjects middleware',
+      message: 'An error has occurred in getProjects',
+    });
+  } else {
+    res.projects = allProjects;
+    console.log('db retrieved these projects:', res.projects);
     next();
   }
 };
