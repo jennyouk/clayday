@@ -27,7 +27,7 @@ mongoose.connection.once('open', () => {
 app.use('/login', userController.verifyUser, (req, res) => {
   // console.log('request body: ', req.body);
   if (res.locals.loginSuccess) {
-    console.log('logged in, ', res.userId);
+    console.log('logged in ', res.userId);
     res.status(200).json({ login: true, userId: res.userId });
   } else {
     console.log('not logged in');
@@ -36,7 +36,7 @@ app.use('/login', userController.verifyUser, (req, res) => {
 });
 
 app.use('/register', userController.createUser, (req, res) => {
-  console.log('register new user');
+  console.log('registered new user', res.userId);
   res.status(200).json({ login: true, userId: res.userId });
 });
 

@@ -5,10 +5,10 @@ const projectController = {};
 // createProject - create and save a new Project into the database.
 projectController.createProject = async (req, res, next) => {
   console.log('entering createProject middleware');
-  console.log('request body: ', req.body);
-  const { nickname, phase, remind, days, notes } = req.body;
+  //   console.log('request body: ', req.body);
+  const { nickname, phase, remind, days, notes, user } = req.body;
   //   if (!remind) days = 0;
-  const user = 1;
+//   if (user === undefined) user = 1;
   const newProject = await Project.create({
     nickname,
     phase,
@@ -27,7 +27,6 @@ projectController.createProject = async (req, res, next) => {
     console.log('newly created project:', newProject);
     next();
   }
-
 };
 
 /**

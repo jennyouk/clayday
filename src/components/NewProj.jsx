@@ -28,12 +28,20 @@ export const NewProj = (props) => {
   const [days, setDays] = useState(3);
   const [notes, setNotes] = useState('');
 
-  const phases = ['thrown', 'trimmed', 'bisqued', 'glazed', 'fired'];
+  const phases = [
+    'thrown',
+    'trimmed',
+    'bisqued',
+    'glazed',
+    'fired',
+    'ideation',
+  ];
   const handleSubmit = (e) => {
     e.preventDefault();
     let body;
-    if (remind) body = { nickname, phase, remind, days, notes };
-    else body = { nickname, phase, remind, days, notes };
+    const user = props.userId;
+    if (remind) body = { nickname, phase, remind, days, notes, user };
+    else body = { nickname, phase, remind, notes, user };
     console.log(body);
     fetch('/addProject', {
       method: 'POST',
@@ -43,19 +51,7 @@ export const NewProj = (props) => {
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
-    //   .then((res) => {
-    //     if (res.added === true) {
-    //       console.log('project added');
-    //       // props.login(true);
-    //     } else {
-    //       console.log('unsuccessful');
-    //       // setButtonText('Log in unsuccessful')
-    //       // props.onFormSwitch('register')
-    //     }
-    //   })
-      // .then(() => {
-      //   props.history.push('/');
-      // })
+      .then(() => props.toggleAdd(false))
       .catch((err) => console.log('Project submission error: ', err));
   };
 
@@ -63,45 +59,57 @@ export const NewProj = (props) => {
     <ThemeProvider theme={theme}>
       <Container component='main' maxWidth='l' sx={{ mt: 3 }}>
         <CssBaseline />
-        <Typography component='h1' variant='h6' color='grey.700' align='left'>
-          add a new project
-        </Typography>
-        <Grid
-          container
-          spacing={3}
-          component='form'
-          onSubmit={handleSubmit}
-          noValidate
-          sx={{ mt: 1 }}
+        <Link
+          // className='add-project'
+          style={{ cursor: 'pointer' }}
+          underline='hover'
+          onClick={() => props.toggleAdd(!props.showAdd)}
+          component='h1'
+          variant='h6'
+          color='grey.700'
+          align='left'
+          cursor='pointer'
         >
-          <Grid item xs={12} lg={4}>
-            <TextField
-              fullWidth
-              //   margin='normal'
-              id='nickname'
-              label='nickname'
-              //   defaultValue="nickname"
-              autoFocus
-              onChange={(e) => setNickname(e.target.value)}
-              //   helperText="Some important text"
-            />
-          </Grid>
-          <Grid item xs={12} lg={4}>
-            <Autocomplete
-              //   margin='normal'
-              fullWidth
-              value={phase}
-              onChange={(event, newValue) => {
-                setPhase(newValue);
-              }}
-              id='phase'
-              options={phases}
-            //   sx={{ width: 300 }}
-              renderInput={(params) => (
-                <TextField {...params} label='project phase' />
-              )}
-            />
-            {/* <InputLabel id='phase'>project phase</InputLabel>
+          add a new project
+        </Link>
+
+        {props.showAdd ? (
+          <Grid
+            container
+            spacing={3}
+            component='form'
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <Grid item xs={12} lg={4}>
+              <TextField
+                fullWidth
+                //   margin='normal'
+                id='nickname'
+                label='nickname'
+                //   defaultValue="nickname"
+                autoFocus
+                onChange={(e) => setNickname(e.target.value)}
+                //   helperText="Some important text"
+              />
+            </Grid>
+            <Grid item xs={12} lg={4}>
+              <Autocomplete
+                //   margin='normal'
+                fullWidth
+                value={phase}
+                onChange={(event, newValue) => {
+                  setPhase(newValue);
+                }}
+                id='phase'
+                options={phases}
+                //   sx={{ width: 300 }}
+                renderInput={(params) => (
+                  <TextField {...params} label='project phase' />
+                )}
+              />
+              {/* <InputLabel id='phase'>project phase</InputLabel>
             <Select
 
               labelId='phase'
@@ -118,11 +126,11 @@ export const NewProj = (props) => {
               <MenuItem value={"glazed"}>glazed</MenuItem>
               <MenuItem value={"fired"}>fired</MenuItem>
             </Select> */}
-          </Grid>
-          <Grid item xs={12} lg={4}>
-            {/* <div className='add-new-reminder'> */}
-            <Box display='flex'>
-              {/* <Checkbox
+            </Grid>
+            <Grid item xs={12} lg={4}>
+              {/* <div className='add-new-reminder'> */}
+              <Box display='flex'>
+                {/* <Checkbox
                 //   type='checkbox'
                 id='remind'
                 name='remind'
@@ -131,53 +139,62 @@ export const NewProj = (props) => {
               />{' '}
               set reminder in */}
 
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    id='remind'
-                    name='remind'
-                    value={remind}
-                    onChange={(e) => setRemind(!remind)}
-                  />
-                }
-                label='remind me in'
-              />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      id='remind'
+                      name='remind'
+                      value={remind}
+                      onChange={(e) => setRemind(!remind)}
+                    />
+                  }
+                  label='remind me in'
+                />
 
+                <TextField
+                  // fullWidth
+                  //   margin='normal'
+                  value={days}
+                  onChange={(e) => setDays(e.target.value)}
+                  id='days'
+                  label='days'
+                  type='number'
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </Box>
+              {/* </div> */}
+            </Grid>
+            <Grid item xs={12}>
               <TextField
-                // fullWidth
-                //   margin='normal'
-                value={days}
-                onChange={(e) => setDays(e.target.value)}
-                id='days'
-                label='days'
-                type='number'
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                fullWidth
+                name='notes'
+                id='notes'
+                label='project notes'
+                multiline
+                rows={8}
+                // maxRows={8}
+                value={notes}
+                placeholder='clay body, start weight, glaze...'
+                onChange={(e) => setNotes(e.target.value)}
               />
-            </Box>
-            {/* </div> */}
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              name='notes'
-              id='notes'
-              label='project notes'
-              multiline
-              rows={8}
-              // maxRows={8}
-              value={notes}
-              placeholder='clay body, start weight, glaze...'
-              onChange={(e) => setNotes(e.target.value)}
-            />
-          </Grid>
-          <Button type='submit' variant='outlined' sx={{ mt: 3, marginLeft: "auto", paddingLeft:5, paddingRight:5 }}>
-            submit
-          </Button>
+            </Grid>
+            <Button
+              type='submit'
+              variant='outlined'
+              sx={{
+                mt: 3,
+                marginLeft: 'auto',
+                paddingLeft: 5,
+                paddingRight: 5,
+              }}
+            >
+              submit
+            </Button>
 
-          {/* <label htmlFor='nickname'>nickname </label> */}
-          {/* <input
+            {/* <label htmlFor='nickname'>nickname </label> */}
+            {/* <input
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
             type='nickname'
@@ -185,7 +202,7 @@ export const NewProj = (props) => {
             id='nickname'
             name='nickname'
           /> */}
-          {/* <TextField
+            {/* <TextField
             margin='dense'
             fullWidth
             id='nickname'
@@ -195,7 +212,7 @@ export const NewProj = (props) => {
             autoFocus
             onChange={(e) => setNickname(e.target.value)}
           /> */}
-          {/* <label htmlFor='phase'>phase </label>
+            {/* <label htmlFor='phase'>phase </label>
           <select
             id='phase'
             name='phase'
@@ -207,8 +224,8 @@ export const NewProj = (props) => {
             <option value='glazed'>glazed</option>
             <option value='fired'>fired</option>
           </select> */}
-          {/* <label htmlFor='remind'>set reminder in </label> */}
-          {/* <input
+            {/* <label htmlFor='remind'>set reminder in </label> */}
+            {/* <input
               value={days}
               onChange={(e) => setDays(e.target.value)}
               type='days'
@@ -216,10 +233,12 @@ export const NewProj = (props) => {
               id='days'
               name='days'
             /> */}
-          {/* <label htmlFor='days'> days </label> */}
-          {/* <label htmlFor='notes'>project notes </label> */}
-        </Grid>
-        {}
+            {/* <label htmlFor='days'> days </label> */}
+            {/* <label htmlFor='notes'>project notes </label> */}
+          </Grid>
+        ) : (
+          <></>
+        )}
       </Container>
     </ThemeProvider>
   );

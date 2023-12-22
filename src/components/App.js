@@ -52,7 +52,7 @@ const theme = createTheme({
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false); //switch to false after debug
-  const [user, setUser] = useState(''); //switch to false after debug
+  const [user, setUser] = useState('');
 
   const login = (bool) => {
     setLoggedIn(bool);

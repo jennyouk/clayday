@@ -17,6 +17,16 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
 
 export const HomeContainer = (props) => {
+  const [showReminders, setShowReminders] = useState(true);
+  const toggleReminders = (bool) => {
+    setShowReminders(bool);
+  };
+
+  const [showAdd, setShowAdd] = useState(false);
+  const toggleAddProj = (bool) => {
+    setShowAdd(bool);
+  };
+
   const theme = useTheme();
 
   return (
@@ -41,9 +51,17 @@ export const HomeContainer = (props) => {
         >
           c l a y d a y
         </Typography>
-        <Reminders />
-        <NewProj />
-        <Ongoing />
+        {showReminders ? (
+          <Reminders userId={props.userId} toggleRem={toggleReminders} />
+        ) : (
+          <></>
+        )}
+        <NewProj
+          userId={props.userId}
+          toggleAdd={toggleAddProj}
+          showAdd={showAdd}
+        />
+        <Ongoing userId={props.userId} />
       </Container>
     </ThemeProvider>
   );

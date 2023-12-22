@@ -23,7 +23,7 @@ export const Reminders = (props) => {
     <ThemeProvider theme={theme}>
       <Container component='main'>
         <CssBaseline />
-        <Alert severity='error' onClose={() => {}}>
+        <Alert severity='error' onClose={(e) => {props.toggleRem(false)}}>
           <AlertTitle>Reminders:</AlertTitle>
           The following projects need attention: <strong>check it out</strong>
         </Alert>
