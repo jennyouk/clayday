@@ -23,11 +23,13 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 
 export const ProjectCard = (props) => {
+  const d = new Date(props.date);
+  const date = d.toDateString();
   const theme = useTheme();
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Card sx={{ minHeight: 300}} variant='outlined'>
+    // <ThemeProvider theme={theme}>
+      // {/* <CssBaseline /> */}
+      <Card sx={{ minHeight: 300 }} variant='outlined'>
         <CardHeader title={props.nickname} />
         {/* <CardMedia
           component='img'
@@ -40,13 +42,13 @@ export const ProjectCard = (props) => {
             Phase: {props.phase}
           </Typography>
           <Typography variant='body2' color='text.secondary'>
-            Date: {props.date}
+            Start Date: {date};
           </Typography>
           <Typography variant='body2' color='text.secondary'>
             Notes: {props.notes}
           </Typography>
         </CardContent>
       </Card>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 };

@@ -33,9 +33,9 @@ projectController.createProject = async (req, res, next) => {
 projectController.getProjects = async (req, res, next) => {
   console.log('entering getProjects middleware');
   //   console.log('request body: ', req.body);
-  const { userId } = req.body;
+  // const { userId } = req.body;
   //   if (!remind) days = 0;
-  //   if (user === undefined) user = 1;
+  const userId = '6583950a1bd00a13741b3d4e'
   const allProjects = await Project.find({ user: userId });
   if (allProjects === undefined) {
     return next({

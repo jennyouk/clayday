@@ -31,11 +31,9 @@ export const Reminders = (props) => {
     .then((allProjects) => {
       console.log(allProjects);
       allProjects.forEach((proj) => {
-        alert.push(
-          proj.nickname
-        );
+        alert.push(proj.nickname);
       });
-      console.log('ongoing', ongoing);
+      // console.log('ongoing', ongoing);
       // console.log('ongoing 0 nickname', ongoing[0].nickname)
     })
     .catch((err) => console.log('Project submission error: ', err));
@@ -44,7 +42,13 @@ export const Reminders = (props) => {
     <ThemeProvider theme={theme}>
       <Container component='main'>
         <CssBaseline />
-        <Alert severity='error' onClose={(e) => {props.toggleRem(false)}}>
+        <Alert
+          severity='warning'
+          variant='outlined'
+          onClose={(e) => {
+            props.toggleRem(false);
+          }}
+        >
           <AlertTitle>Reminders:</AlertTitle>
           The following projects need attention: <strong>check it out</strong>
         </Alert>

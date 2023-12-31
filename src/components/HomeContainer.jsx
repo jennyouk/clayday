@@ -47,9 +47,11 @@ export const HomeContainer = (props) => {
             WebkitTextFillColor: 'transparent',
             mt: 3,
             mb: 4,
+            pl: 3,
+            pr: 3
           }}
         >
-          c l a y d a y
+             c l a y d a y
         </Typography>
         {showReminders ? (
           <Reminders userId={props.userId} toggleRem={toggleReminders} />
