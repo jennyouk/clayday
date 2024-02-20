@@ -60,7 +60,6 @@ export const NewProj = (props) => {
       <Container component='main' maxWidth='l' sx={{ mt: 3 }}>
         <CssBaseline />
         <Link
-          // className='add-project'
           style={{ cursor: 'pointer' }}
           underline='hover'
           onClick={() => props.toggleAdd(!props.showAdd)}
@@ -69,8 +68,15 @@ export const NewProj = (props) => {
           color='grey.700'
           align='left'
           cursor='pointer'
+          sx={[
+            (theme) => ({
+              '&:hover': {
+                color: theme.palette.primary.main,
+              },
+            }),
+          ]}
         >
-          add a new project
+          add a new project »
         </Link>
 
         {props.showAdd ? (

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Entry } from './Entry.jsx';
 import { HomeContainer } from './HomeContainer.jsx';
-import { purple, pink } from '@mui/material/colors';
+import { purple } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import '../scss/app-home.scss';
-import { Troubleshoot } from '@mui/icons-material';
+// import { Troubleshoot } from '@mui/icons-material';
 
 const theme = createTheme({
   palette: {
@@ -13,7 +12,7 @@ const theme = createTheme({
       main: purple[500],
     },
     secondary: {
-      main: '#f44336',
+      main: '#EA6CD9',
     },
   },
   typography: {
@@ -28,31 +27,18 @@ const theme = createTheme({
         },
       },
     },
-    // MuiCssBaseline: {
-    //   styleOverrides: {
-    //     '@font-face': {
-    //       fontFamily: 'Poppins',
-    //       // src: `url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') format("truetype")`
-    //     },
-    //     // html: {
-    //     // fontSize: '62.5%' /* 62.5% of 16px = 10px */,
-    //     // fontFamily: 'Poppins, sans-serif',
-    //     // },
-    //     // body: {
-    //     // margin: '0',
-    //     // color: 'darkGrey',
-    //     // boxSizing: 'border-box',
-    //     // fontFamily: 'Poppins, sans-serif',
-    //     // backgroundColor: '#E3E3E3',
-    //     // backgroundImage: 'linear-gradient(49deg, #7439db, #c66fbc 48%, #f7944d)',
-    //     // },
-    //   },
-    // },
+    MuiAlert: {
+      styleOverrides: {
+        filledError: {
+          backgroundColor: '#EA6CD9',
+        },
+      }
+    },
   },
 });
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(true); //switch to false after debug
+  const [loggedIn, setLoggedIn] = useState(false); //switch to false after debug
   const [user, setUser] = useState('');
 
   const login = (bool) => {
@@ -64,7 +50,6 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
       {loggedIn ? (
         <HomeContainer userId={user} />
       ) : (

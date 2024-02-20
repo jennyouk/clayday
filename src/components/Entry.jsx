@@ -24,19 +24,13 @@ export const Entry = (props) => {
   const theme = useTheme();
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component='main'>
-        <CssBaseline />
         <Typography
-          variant='h2'
+          variant='h1'
           align='center'
-          // color='grey.700'
           sx={{
-            // backgroundcolor: 'primary',
-            backgroundImage: `linear-gradient(45deg, #5514B4, #FF80FF)`,
+            backgroundImage: `linear-gradient(70deg, #5514B4, #FF80FF)`,
             backgroundSize: '100%',
-            // backgroundRepeat: 'repeat',
-            // backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             mt: 3,
@@ -51,6 +45,5 @@ export const Entry = (props) => {
           <Register onFormSwitch={toggleForm} login={props.login} userId={props.userId}/>
         )}
       </Container>
-    </ThemeProvider>
   );
 };

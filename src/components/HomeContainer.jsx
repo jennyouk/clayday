@@ -2,15 +2,7 @@ import React, { useState } from 'react';
 import { Reminders } from './Reminders.jsx';
 import { NewProj } from './NewProj.jsx';
 import { Ongoing } from './Ongoing.jsx';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
@@ -22,7 +14,7 @@ export const HomeContainer = (props) => {
     setShowReminders(bool);
   };
 
-  const [showAdd, setShowAdd] = useState(true);
+  const [showAdd, setShowAdd] = useState(false);
   const toggleAddProj = (bool) => {
     setShowAdd(bool);
   };
@@ -32,14 +24,11 @@ export const HomeContainer = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <Container component='main'>
-        <CssBaseline />
         <Typography
           variant='h2'
           align='left'
-          // color='grey.700'
           sx={{
-            // backgroundcolor: 'primary',
-            backgroundImage: `linear-gradient(45deg, #5514B4, #FF80FF)`,
+            backgroundImage: `linear-gradient(70deg, #5514B4, #FF80FF)`,
             backgroundSize: '40%',
             backgroundRepeat: 'repeat',
             backgroundClip: 'text',

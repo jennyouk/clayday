@@ -1,95 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { ThemeProvider } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
-import Autocomplete from '@mui/material/Autocomplete';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import FormGroup from '@mui/material/FormGroup';
 import { ProjectCard } from './ProjectCard.jsx';
 
 export const Ongoing = (props) => {
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const [projectsArr, setProjectsArr] = useState([]);
-  // let ongoing = [];
-  // const projects = [];
-  // fetch('/getProjects', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'Application/JSON',
-  //   },
-  //   body: JSON.stringify({ userId: props.userId }),
-  // })
-  //   .then((res) => res.json())
-  //   .then((allProjects) => {
-  //     // console.log(allProjects);
-  //     // allProjects.forEach((proj) => {
-  //     //   // ongoing.push(
-  //     //   //   <ProjectCard
-  //     //   //     nickname={proj.nickname}
-  //     //   //     phase={proj.phase}
-  //     //   //     date={proj.createDate}
-  //     //   //     notes={proj.notes}
-  //     //   //   ></ProjectCard>
-  //     //   // );
-  //     //   console.log(proj.nickname, proj.phase, proj.createDate, proj.notes)
-  //     // });
-
-  //     // console.log('ongoing 0 nickname', ongoing[0].nickname)
-  //     // ongoing = allProjects;
-  //     // console.log('ongoing', ongoing);
-
-  //     // for (let i = 0; i < allProjects.length; i++) {
-  //     //   projects.push(
-  //     //     <ProjectCard
-  //     //       nickname={allProjects[i].nickname}
-  //     //       phase={allProjects[i].phase}
-  //     //       date={allProjects[i].createDate}
-  //     //       notes={allProjects[i].notes}
-  //     //       key={i + 100}
-  //     //     />
-  //     //   );
-  //     // }
-  //     // console.log('projects', projects);
-  //     projects = allProjects;
-  //     // console.log('projects', projects);
-  //   })
-  //   .catch((err) => console.log('Project submission error: ', err));
-
-  // const projects = [];
-  // for (let i = 0; i < ongoing.length; i++) {
-  //   projects.push(
-  //     <ProjectCard
-  //       nickname={proj.nickname}
-  //       phase={proj.phase}
-  //       date={proj.createDate}
-  //       notes={proj.notes}
-  //       key={i+100}
-  //     ></ProjectCard>
-  //   );
-  // }
-  // console.log('projects',projects);
-
-  // const cardMaker = (nickname, phase, notes) => (
-  //   <ProjectCard
-  //     nickname={nickname}
-  //     phase={phase}
-  //     notes={notes}
-  //   />
-  // );
 
   const getProjects = async () => {
     try {
@@ -120,9 +39,9 @@ export const Ongoing = (props) => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+
       <Container component='main' maxWidth='l' sx={{ mt: 3 }}>
-        <CssBaseline />
+
         <Typography
           component='h1'
           variant='h6'
@@ -136,7 +55,7 @@ export const Ongoing = (props) => {
 
         <Grid container spacing={3} sx={{ mt: 1 }}>
           {projectsArr.map((proj, i) => (
-            <Grid key={i} item xs={12} lg={3}>
+            <Grid key={i} item xs={12} lg={4}>
               <ProjectCard
                 key={i}
                 nickname={proj.nickname}
@@ -172,6 +91,6 @@ export const Ongoing = (props) => {
           </Grid> */}
         </Grid>
       </Container>
-    </ThemeProvider>
+
   );
 };

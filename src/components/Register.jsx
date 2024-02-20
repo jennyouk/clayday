@@ -24,8 +24,6 @@ export const Register = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = { name, username, password };
-    // console.log(name, username, password);
-    // console.log(body);
     fetch('/register', {
       method: 'POST',
       headers: {
@@ -39,9 +37,6 @@ export const Register = (props) => {
         props.login(true);
         props.userId(res.userId);
       })
-      // .then(() => {
-      //   props.history.push('/');
-      // })
       .catch((err) => {
         setButtonText('Please fill all fields');
         console.log('Registration error: ', err);

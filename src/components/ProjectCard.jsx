@@ -22,6 +22,7 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 
+
 export const ProjectCard = (props) => {
   const d = new Date(props.date);
   const date = d.toDateString();
