@@ -35,7 +35,7 @@ projectController.getProjects = async (req, res, next) => {
   //   console.log('request body: ', req.body);
   // const { userId } = req.body;
   //   if (!remind) days = 0;
-  const userId = '6583950a1bd00a13741b3d4e'
+  const userId = '6583950a1bd00a13741b3d4e' //hard coded userID her needs to be replaced
   const allProjects = await Project.find({ user: userId });
   if (allProjects === undefined) {
     return next({

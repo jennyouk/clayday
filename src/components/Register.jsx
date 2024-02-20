@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useTheme } from '@mui/material/styles';
 
 export const Register = (props) => {
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const [name, setName] = useState('');
   const [buttonText, setButtonText] = useState('Register');
 
-  const theme = useTheme();
+  const [loginData, setLogin] = useState({
+    name: '',
+    username: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLogin({ ...loginData, [name]: value });
+    console.log(loginData);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = { name, username, password };
+    const body = loginData;
+    // console.log(body);
     fetch('/register', {
       method: 'POST',
       headers: {
@@ -44,9 +45,7 @@ export const Register = (props) => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component='main' maxWidth='xs'>
-        <CssBaseline />
         <Typography component='h1' variant='h6' color='grey.700' align='right'>
           get messy with us
         </Typography>
@@ -60,7 +59,7 @@ export const Register = (props) => {
             name='name'
             autoComplete='name'
             autoFocus
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleChange}
           />
           <TextField
             margin='normal'
@@ -70,7 +69,7 @@ export const Register = (props) => {
             label='username'
             name='username'
             autoComplete='username'
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={handleChange}
           />
           <TextField
             margin='normal'
@@ -81,7 +80,7 @@ export const Register = (props) => {
             type='password'
             id='password'
             autoComplete='current-password'
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
           />
           <Button
             type='submit'
@@ -101,6 +100,5 @@ export const Register = (props) => {
           Already have an account? Login here.
         </Button>
       </Container>
-    </ThemeProvider>
   );
 };

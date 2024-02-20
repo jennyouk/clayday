@@ -1,30 +1,26 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { ThemeProvider } from '@mui/material/styles';
-import { useTheme } from '@mui/material/styles';
 
 export const Login = (props) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [buttonText, setButtonText] = useState('Log in');
 
-  const theme = useTheme();
+  const [loginData, setLogin] = useState({
+    username: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLogin({ ...loginData, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = { username, password };
-    // console.log(username, password);
-    // console.log(body);
+    const body = loginData;
     fetch('/login', {
       method: 'POST',
       headers: {
@@ -41,19 +37,13 @@ export const Login = (props) => {
         } else {
           console.log('unsuccessful');
           setButtonText('Log in unsuccessful');
-          // props.onFormSwitch('register')
         }
       })
-      // .then(() => {
-      //   props.history.push('/');
-      // })
       .catch((err) => console.log('Login error: ', err));
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component='main' maxWidth='xs'>
-        {/* <CssBaseline /> */}
         <Typography component='h1' variant='h6' color='grey.700' align='center'>
           welcome!
         </Typography>
@@ -67,7 +57,7 @@ export const Login = (props) => {
             name='username'
             autoComplete='username'
             autoFocus
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={handleChange}
           />
           <TextField
             margin='normal'
@@ -78,7 +68,7 @@ export const Login = (props) => {
             type='password'
             id='password'
             autoComplete='current-password'
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
           />
           <Button
             type='submit'
@@ -88,26 +78,6 @@ export const Login = (props) => {
           >
             {buttonText}
           </Button>
-
-          {/* <label htmlFor='username'>username </label>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            type='username'
-            placeholder='username'
-            id='username'
-            name='username'
-          />
-          <label htmlFor='password'>password </label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type='password'
-            placeholder='***********'
-            id='password'
-            name='password'
-          />
-          <Button variant='outlined'>{buttonText}</Button> */}
         </Box>
         <Button
           variant='text'
@@ -118,6 +88,5 @@ export const Login = (props) => {
           Don't have an account? Register here.
         </Button>
       </Container>
-    </ThemeProvider>
   );
 };
