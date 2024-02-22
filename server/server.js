@@ -15,7 +15,6 @@ app.use(express.json());
 
 mongoose.connect(
   process.env.MONGO_URI //is that right?
-  // 'mongodb+srv://student:ilovetesting@database-assessment.6vall.mongodb.net/week-4-assessment?retryWrites=true&w=majority',
   // { useNewUrlParser: true, useUnifiedTopology: true }
 );
 mongoose.connection.once('open', () => {
